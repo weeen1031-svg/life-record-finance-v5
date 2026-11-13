@@ -1,0 +1,8 @@
+{
+  "name": "life-record-finance-v5",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node tests/run.js"
+  }
+}

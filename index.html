@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0b1019" />
+    <meta name="description" content="記帳 V5：記錄收支、管理預算與訂閱。資料保存在目前瀏覽器。" />
+    <title>記帳 V5</title>
+    <link rel="stylesheet" href="styles/main.css" />
+    <script type="module" src="scripts/app.js"></script>
+  </head>
+  <body class="finance-only">
+    <div class="app-shell finance-only-app">
+      <main class="main-content" id="main-content">
+        <header class="topbar">
+          <div class="breadcrumb"><strong>記帳 V5</strong><span class="breadcrumb-divider">/</span><strong id="breadcrumb-current">記帳工作區</strong></div>
+          <div class="topbar-meta"><span class="finance-preview-chip" data-finance-v4-preview aria-label="記帳版本狀態" hidden>V5 正式版</span><span class="demo-chip"><span class="demo-chip-dot"></span>資料在本機</span><span class="topbar-date" id="today-date"></span></div>
+        </header>
+
+        <section class="view-root" id="view-root" tabindex="-1" aria-live="polite"></section>
+        <footer class="page-footer"><span>記帳 V5</span><span>資料保存在目前瀏覽器；需要換裝置時請使用備份匯出與匯入</span></footer>
+      </main>
+    </div>
+  </body>
+</html>
