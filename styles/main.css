@@ -1718,8 +1718,8 @@ body.is-sidebar-resizing,body.is-sidebar-resizing * { cursor: ew-resize !importa
 .finance-reminder-rule-toggle:hover { background:#3b3e46; }
 .finance-reminder-rule-toggle:focus-visible { outline:2px solid #a99abb; outline-offset:1px; }
 .finance-reminder-rule-chevron { display:grid; width:22px; height:22px; place-items:center; border:1px solid #555b66; border-radius:6px; color:#c3c7d0; }
-.finance-reminder-rule-chevron .icon { transform:rotate(-90deg); transition:transform .16s ease; }
-.finance-reminder-rule-toggle[aria-expanded="true"] .finance-reminder-rule-chevron .icon { transform:rotate(0); }
+.finance-reminder-rule-chevron .icon { transform:rotate(0); transition:transform .16s ease; }
+.finance-reminder-rule-toggle[aria-expanded="true"] .finance-reminder-rule-chevron .icon { transform:rotate(90deg); }
 .finance-reminder-rule-title,.finance-reminder-rule-summary { display:grid; min-width:0; gap:3px; }
 .finance-reminder-rule-title strong { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 .finance-reminder-rule-title small,.finance-reminder-rule-summary small { color:#bfc3cc; font-size:12px; }
@@ -1728,7 +1728,7 @@ body.is-sidebar-resizing,body.is-sidebar-resizing * { cursor: ew-resize !importa
 .finance-reminder-rule-actions { display:flex; align-items:center; justify-content:flex-end; gap:5px; }
 .finance-reminder-rule-actions .quiet-button { min-height:34px; padding:5px 8px; font-size:13px; }
 .finance-reminder-rule-actions [data-danger="true"] { color:#efafb5; }
-.finance-reminder-rule-occurrences { display:grid; gap:8px; padding:0 10px 10px; }
+.finance-reminder-rule-occurrences { display:grid; gap:8px; overflow:hidden; padding:0 10px 10px; }
 .finance-reminder-rule-occurrences[hidden] { display:none!important; }
 .finance-reminder-rule-occurrences .finance-reminder-card { margin:0; }
 
