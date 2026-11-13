@@ -687,11 +687,17 @@ export function createFinanceController(onChange, { environment = globalThis, mo
     if (action === 'new-reminder') { openReminderEditor(); repaint(false, false, { financeFocus: true }); return true; }
     if (action === 'toggle-cancelled') { state.showCancelled = !state.showCancelled; onChange(); return true; }
     if (action === 'toggle-reminder-rule') {
-      if (state.expandedReminderRules.has(id)) state.expandedReminderRules.delete(id);
-      else state.expandedReminderRules.add(id);
-      saveExpandedReminderRules();
-      onChange(); return true;
-    }
+  const occurrencesPanel = target.closest?.('.finance-reminder-rule-group')?.querySelector?.('.finance-reminder-rule-occurrences');
+  if (state.expandedReminderRules.has(id)) state.expandedReminderRules.delete(id);
+  else state.expandedReminderRules.add(id);
+  saveExpandedReminderRules();
+  onChange({ reminderRuleTransition: {
+    ruleId: id,
+    expanded: state.expandedReminderRules.has(id),
+    fromHeight: occurrencesPanel?.getBoundingClientRect?.().height ?? 0,
+  } });
+  return true;
+}
     if (action === 'request-stop-rule') {
       const rule = state.data.reminderRules.find((row) => row.id === id);
       if (!rule || !rule.active) { state.notice = '這項提醒已更新，請重新讀取後再操作。'; onChange(); return true; }
