@@ -2607,3 +2607,10 @@ body.finance-only .breadcrumb strong:first-child { color:#cdd2dd; font-weight:75
   body.finance-only .topbar { height:auto; min-height:58px; flex-wrap:wrap; padding:10px 0; }
   body.finance-only .topbar-meta { gap:8px; }
 }
+.subscription-summary-toggle .icon { transition: transform .14s ease; }
+.subscription-summary-toggle.is-expanded .icon { transform: rotate(90deg); }
+.subscription-summary-toggle.is-collapsed .icon { transform: rotate(0deg); }
+
+@media (prefers-reduced-motion: reduce) {
+  .subscription-summary-toggle .icon { transition: none !important; }
+}
