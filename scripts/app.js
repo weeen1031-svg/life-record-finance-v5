@@ -48,6 +48,33 @@ const financeWorkspace = createFinanceController((options = {}) => {
   if (['ledger', 'analytics'].includes(activePage)) workbenchState.subscriptionData = financeWorkspace.getLoadedReminderData();
   const scrollY = options.preserveScroll ? window.scrollY : null;
   render(activePage);
+  if (options.reminderRuleTransition && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const { ruleId, expanded, fromHeight } = options.reminderRuleTransition;
+  const content = [...(root.querySelectorAll?.('[data-reminder-rule-occurrences]') || [])]
+    .find((item) => item.dataset.reminderRuleOccurrences === String(ruleId));
+  if (content?.animate) {
+    content.getAnimations?.().forEach((animation) => animation.cancel());
+    content.hidden = false;
+    content.inert = !expanded;
+    const startHeight = Number.isFinite(fromHeight) ? Math.max(0, fromHeight) : (expanded ? 0 : content.scrollHeight);
+    const endHeight = expanded ? content.scrollHeight : 0;
+    if (Math.abs(startHeight - endHeight) > 1) {
+      const animation = content.animate([
+        { height: `${startHeight}px`, opacity: expanded ? 0 : 1, transform: `translateY(${expanded ? '-8px' : '0px'})` },
+        { height: `${endHeight}px`, opacity: expanded ? 1 : 0, transform: `translateY(${expanded ? '0px' : '-8px'})` },
+      ], { duration: 240, easing: 'cubic-bezier(.22,.72,.25,1)', fill: 'both' });
+      animation.onfinish = () => {
+        if (!content.isConnected) return;
+        content.hidden = !expanded;
+        content.inert = !expanded;
+        animation.cancel();
+      };
+    } else {
+      content.hidden = !expanded;
+      content.inert = !expanded;
+    }
+  }
+}
   if (scrollY !== null) window.scrollTo(0, scrollY);
   if (options.field) {
     const field = [...(root.querySelectorAll?.('[data-finance-field]') || [])].find((item) => item.dataset.financeForm === options.field.form && item.dataset.financeField === options.field.field);
